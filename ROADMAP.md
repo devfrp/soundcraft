@@ -92,7 +92,7 @@ Weights and evidence per row: [target-app-parity.md](docs/target-app-parity.md#f
 | Portuguese | pt | none | 0 % |
 | Indonesian | id | none | 0 % |
 | Japanese | ja | none | 0 % |
-| German | de | none | 0 % |
+| German | de | none (PR #143 open) | 0 % |
 | Korean | ko | none | 0 % |
 | Vietnamese | vi | none | 0 % |
 

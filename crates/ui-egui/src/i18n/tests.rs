@@ -237,23 +237,24 @@ fn all_keys() -> BTreeSet<String> {
 }
 
 #[test]
-fn every_visible_string_has_a_french_and_a_spanish_translation() {
+fn every_visible_string_has_a_french_a_spanish_and_a_german_translation() {
     let mut rows = BTreeSet::new();
     for r in strings::STRINGS {
         assert!(rows.insert(r.0), "duplicate row `{}`", r.0);
     }
     let missing: Vec<String> = all_keys().into_iter().filter(|k| !rows.contains(k.as_str())).collect();
     assert!(missing.is_empty(), "{} strings have no translation row:\n{}", missing.len(), missing.join("\n"));
-    let empty: Vec<&str> = strings::STRINGS.iter().filter(|r| r.1.is_empty() || r.2.is_empty()).map(|r| r.0).collect();
-    assert!(empty.is_empty(), "rows missing French or Spanish:\n{}", empty.join("\n"));
+    let empty: Vec<&str> = strings::STRINGS.iter().filter(|r| r.1.is_empty() || r.2.is_empty() || r.3.is_empty()).map(|r| r.0).collect();
+    assert!(empty.is_empty(), "rows missing French, Spanish or German:\n{}", empty.join("\n"));
 }
 
 #[test]
 fn translations_keep_their_placeholders() {
-    for (en, fr, es) in strings::STRINGS {
+    for (en, fr, es, de) in strings::STRINGS {
         let n = en.matches("{}").count();
         assert_eq!(fr.matches("{}").count(), n, "fr: {en} → {fr}");
         assert_eq!(es.matches("{}").count(), n, "es: {en} → {es}");
+        assert_eq!(de.matches("{}").count(), n, "de: {en} → {de}");
     }
 }
 
@@ -265,6 +266,9 @@ fn tr_follows_the_language_and_falls_back_to_english() {
     set(Language::Es);
     assert_eq!(tr("File"), "Archivo");
     assert_eq!(trf("{} tracks", &[&3]), "3 pistas");
+    set(Language::De);
+    assert_eq!(tr("File"), "Datei");
+    assert_eq!(trf("{} tracks", &[&3]), "3 Spuren");
     set(Language::En);
     assert_eq!(tr("File"), "File");
     assert_eq!(fill("{} of {} {{x}}", &[&1, &"two"]), "1 of two {x}");
@@ -279,6 +283,9 @@ fn language_command_sets_reports_and_persists() {
     assert_eq!(current(), Language::Fr);
     assert_eq!(app.run("ui.language", json!({"lang": "Español"})), Ok(json!({"lang": "es"})));
     assert!(app.run("ui.language", json!({"lang": "tlh"})).is_err());
+    assert_eq!(app.run("ui.language", json!({"lang": "Deutsch"})), Ok(json!({"lang": "de"})));
+    assert_eq!(current(), Language::De);
+    assert_eq!(app.run("ui.language", json!({"lang": "es"})), Ok(json!({"lang": "es"})));
     assert_eq!(app.ui.language, Language::Es);
     let back: UiState = serde_json::from_value(serde_json::to_value(&app.ui).unwrap_or_default()).unwrap_or_default();
     assert_eq!(back.language, Language::Es);
