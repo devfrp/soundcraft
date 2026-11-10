@@ -1,6 +1,6 @@
 # Localization parity
 
-> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-10 · **Change:** major (first per-language status) · **Target:** Avid Pro Tools Ultimate 2026.4.1
+> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-11-10 · **Change:** minor (German added to PR #143) · **Target:** Avid Pro Tools Ultimate 2026.4.1
 
 SoundCraft is English only. There is no string catalog: every menu label, dialog and tooltip is a
 literal in Rust (`crates/engine/src/cmd/*`, `crates/ui-egui/src/*`). Pro Tools ships its UI in
@@ -13,7 +13,7 @@ CJK/Devanagari/Arabic (PR #141 open), RTL layout and complex-script shaping (egu
 ≈ 25–40 h, or ship Arabic/Hindi menus-only), then ≈ 3–5 h of agent translation per language, plus
 native-speaker review (human).
 
-Open work: PR #143 (French and Spanish, a Language setting), PR #141 (bundled multilingual font
+Open work: PR #143 (French, Spanish and German, a Language setting), PR #141 (bundled multilingual font
 fallbacks), issue #67 (Ukrainian).
 
 | Language | Code | UI strings translated | Dialogs / tooltips / help | Script support | Native review | Status | Est. to full (h) | In Pro Tools |
@@ -27,7 +27,7 @@ fallbacks), issue #67 (Ukrainian).
 | Portuguese | pt | 0 (0 %) | ❌ | Latin ✅ | no | none | 3–5 | ❌ |
 | Indonesian | id | 0 (0 %) | ❌ | Latin ✅ | no | none | 3–5 | ❌ |
 | Japanese | ja | 0 (0 %) | ❌ | ❌ no CJK font fallback, no IME testing | no | none | 6–10 | ✅ |
-| German | de | 0 (0 %) | ❌ | Latin ✅ | no | none | 3–5 | ✅ |
+| German | de | 0 (0 %) — PR #143 pending | ❌ | Latin ✅ | no | none | 3–5 | ✅ |
 | Korean | ko | 0 (0 %) | ❌ | ❌ no Hangul font fallback | no | none | 6–10 | ✅ |
 | Vietnamese | vi | 0 (0 %) | ❌ | 🟡 Latin with stacked diacritics, untested | no | none | 3–5 | ❌ |
 
@@ -40,3 +40,4 @@ Per-language hours exclude the shared catalog and script work above.
 | Date | Change | Summary |
 |---|---|---|
 | 2026-10-10 | major | Created: English only, no catalog; the twelve key languages at 0 %; Pro Tools' 8 languages listed from its bundle |
+| 2026-11-10 | minor | German column added to the PR #143 catalog (pending, no native review yet) |
