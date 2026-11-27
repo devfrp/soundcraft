@@ -413,6 +413,7 @@ pub(super) fn translate(source: &str) -> Option<&'static str> {
         "Feedback" => "Réinjection",
         "Feet+Frames" => "Pieds+Images",
         "File" => "Fichier",
+        "File Path" => "Chemin du fichier",
         "Fill Window With Session" => "Ajuster la session à la fenêtre",
         "Fill window with session (Alt+A)" => "Ajuster la session à la fenêtre (Alt+A)",
         "Fills the selection on the selected tracks with a new clip." => "Remplit la sélection des pistes sélectionnées avec un nouveau clip.",
