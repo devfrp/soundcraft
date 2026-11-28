@@ -67,7 +67,10 @@ fn main() {
     }
     if let Err(e) = res.compile() {
         if std::env::var_os("SOUNDCRAFT_REQUIRE_WINRES").is_some() {
-            panic!("embedding Windows resources failed: {e}");
+            // The workspace denies `clippy::panic`, build scripts included: stop the build with
+            // the reason on stderr.
+            eprintln!("embedding Windows resources failed: {e}");
+            std::process::exit(1);
         }
         println!("cargo:warning=soundcraft.exe built without icon/version resources: {e}");
     }
