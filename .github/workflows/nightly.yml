@@ -22,9 +22,9 @@ jobs:
       actions: read
       attestations: write
       id-token: write
-    uses: storytold/craft-common-actions/.github/workflows/nightly-unsigned.yml@bf94b15b708089b95c4e2d1c978e66ecf1f2f4f3
+    uses: storytold/craft-common-actions/.github/workflows/nightly-unsigned.yml@main
     with:
-      tooling-revision: bf94b15b708089b95c4e2d1c978e66ecf1f2f4f3
+      tooling-revision: main
       app-name: soundcraft
       manual-actors: '["bflatastic","dylanmtaylor","echelon","FredApps","skylartaylor"]'
       craft-fonts-ref: cc9269cd8d8258785dac603fba3122e5d2556795

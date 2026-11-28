@@ -214,7 +214,7 @@ jobs:
         with:
           persist-credentials: false
       - id: rust
-        uses: storytold/craft-common-actions/actions/rust-channel@f5141455aac7b2eb4708aa259d8ffcdf10fde939
+        uses: storytold/craft-common-actions/actions/rust-channel@main
         with:
           targets: aarch64-apple-darwin
       - uses: step-security/dtolnay-rust-toolchain@8dd607977d06adf4ed49b190381e74c17a9dd25f # v1.0.0
